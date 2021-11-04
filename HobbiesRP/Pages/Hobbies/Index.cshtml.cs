@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using HobbiesRP.Data;
 using HobbiesRP.Models;
@@ -19,7 +20,13 @@ namespace HobbiesRP.Pages.Hobbies
             _context = context;
         }
 
-        public IList<Hobby> Hobby { get;set; }
+        public IList<Hobby> Hobby { get; set; }
+        [BindProperty(SupportsGet = true)]
+        public string SearchString { get; set; }
+        public SelectList Name { get; set; }
+        [BindProperty(SupportsGet = true)]
+        public string HobbyName { get; set; }
+
 
         public async Task OnGetAsync()
         {
